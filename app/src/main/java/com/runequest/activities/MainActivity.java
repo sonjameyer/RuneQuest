@@ -1,4 +1,4 @@
-package com.runequest;
+package com.runequest.activities;
 
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentManager;
@@ -14,6 +14,11 @@ import android.widget.AdapterView;
 import android.widget.ListView;
 import android.widget.RelativeLayout;
 
+import com.runequest.adapters.DrawerListAdapter;
+import com.runequest.R;
+import com.runequest.navigation.NavItem;
+import com.runequest.navigation.ProfileNavItem;
+
 import java.util.ArrayList;
 
 public class MainActivity extends AppCompatActivity {
@@ -27,13 +32,14 @@ public class MainActivity extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.drawer);
+
+        setContentView(R.layout.activity_main);
 
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
         getSupportActionBar().setHomeAsUpIndicator(R.drawable.drawer);
 
         mNavItems = new ArrayList<>();
-        mNavItems.add(new NavItem("Profile", "Name, culture etc...", R.drawable.ic_launcher));
+        mNavItems.add(new ProfileNavItem("Profile", "Name, culture etc...", R.drawable.ic_launcher));
         mNavItems.add(new NavItem("Attributes", "STR, CON, SIZ etc", R.drawable.ic_launcher));
         mNavItems.add(new NavItem("Hit Locations", "arm, legs, head", R.drawable.ic_launcher));
         mNavItems.add(new NavItem("Standard Skills", "athletics, boating etc", R.drawable.ic_launcher));
@@ -112,7 +118,7 @@ public class MainActivity extends AppCompatActivity {
 * is selected.
 * */
     private void selectItemFromDrawer(int position) {
-        Fragment fragment = new Fragment();
+        Fragment fragment = mNavItems.get(position).getFragment();
 
         FragmentManager fragmentManager = getSupportFragmentManager();
         fragmentManager.beginTransaction()

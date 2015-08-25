@@ -1,4 +1,4 @@
-package com.runequest;
+package com.runequest.adapters;
 
 import android.content.Context;
 import android.view.LayoutInflater;
@@ -8,12 +8,15 @@ import android.widget.BaseAdapter;
 import android.widget.ImageView;
 import android.widget.TextView;
 
+import com.runequest.R;
+import com.runequest.navigation.NavItem;
+
 import java.util.ArrayList;
 
 /**
  * Created by meyers on 2015-08-25.
  */
-class DrawerListAdapter extends BaseAdapter {
+public class DrawerListAdapter extends BaseAdapter {
 
     Context mContext;
     ArrayList<NavItem> mNavItems;
